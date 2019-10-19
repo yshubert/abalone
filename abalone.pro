@@ -62,7 +62,8 @@ build_board(95).
 
 board_initial_value(36, white):- !.
 board_initial_value(46, white):- !.
-board_initial_value(37, white):- !.
+board_initial_value(47, white):- !.
+board_initial_value(48, white):- !.
 board_initial_value(26, black):- !.
 board_initial_value(22, black):- !.
 board_initial_value(30, black):- !.
@@ -326,7 +327,7 @@ all_moves_for_player((Player, _, _, _, _), Depth, SortedMoves):-
 	(cell_value(FromCell, Color), 
 		can_make_move(MoveType, Color, Direction, FromCell, ToCell)),
 		Moves),
-	MovesLen is 10,
+	MovesLen is 20,
 	sort_moves_with_limit(Moves, SortedMoves, MovesLen).	
 
 sort_moves_with_limit([], [], _):- !.
@@ -389,8 +390,8 @@ game_flow(Player):-
 	alpha_beta((Player, _, _, _, _), Depth, -999999, 999999, NewState, Val),
 	write(NewState).
 	
-max_to_move((-1 ,_, _ , _ , _) ).
-min_to_move( (1 , _,_ , _ , _) ).
+max_to_move((1 ,_, _ , _ , _) ).
+min_to_move( (-1 , _,_ , _ , _) ).
 
 alpha_beta(State, MaxDepth, Alpha, Beta, GoodState, Val):-
     all_moves_for_player(State, MaxDepth, StateList), MaxDepth > 0, !,
